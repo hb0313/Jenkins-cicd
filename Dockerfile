@@ -12,5 +12,5 @@ WORKDIR /usr/src/roberta_qa
 COPY ./ ./
 
 #Expose port and run application
-EXPOSE 8000
+#EXPOSE 8000
 #ENTRYPOINT ["/bin/sh", "-c", "uvicorn main:app --reload --host 0.0.0.0"]
