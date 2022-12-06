@@ -1,5 +1,12 @@
-from api.v1.routers import __version__
+from fastapi import testclient
+
+import core.config as config
+import main
+
+settings = config.settings
+client = testclient.TestClient(main.app)
 
 
 def test_app() -> None:
-    assert __version__ == "0.1.0"
+    assert main.app.title == "Question Answer - RoBerta Base CUAD"
+    assert main.app.version == settings.releaseId

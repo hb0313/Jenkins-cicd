@@ -1,51 +1,46 @@
-# Jenkins-cicd
-
-## Repo used to build docker images
-
-## How it works?
-
-App files along with a Dockerfile can be placed in repo. Jenkins will automatically start the build when committed.
-All logs will be stored in a log file post build.
-
-NOTE: Jenkins is running on localhost and is not accessible via internet.
+# Model Description
 
 
-## Features
+This model is the fine-tuned version of "RoBERTa Base" using [CUAD dataset](https://huggingface.co/datasets/cuad)
 
-- Docker build pipeline
-- Build logging
-- Clone repo and start auto build
-- Schedule building
+# Model Usage
 
-## Jenkinsfile
+```python
+    from transformers import pipeline
 
-Jenkins configuration for build
+    model_path = "akdeniz27/roberta-base-cuad"
 
-```sh
-pipeline {
-    environment {
-        dockerImage = ''
-    }
-    agent any
-        stages {
-            stage('Cloning Git') {
-                steps {
-                    git 'https://github.com/hb0313/Jenkins-cicd.git'
-                }
-            }
-            stage('Building image') {
-                steps{
-                    withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']) {
-                        sh("sh run.sh")
-                    }
-                }
-            }
-            stage('Cleaning pipeline') {
-                steps{
-                    withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin'])
-                        sh("docker rmi git/appbuild")
-                }
-            }
-        }
-}
+    model = pipeline(
+            task="question-answering",
+            model=self._model_path,
+            tokenizer=self._model_path,
+        )
+    qa = model({"question": question, "context": context})
+    print(qa["score"], qa["answer"])
 ```
+
+# How API works
+
+The api takes two payloads namely:
+
+1. question
+2. context
+
+    ```python
+    
+        response = requests.post('localhost/api/v1/classify', data={
+        'question': 'yourquestion',
+        'context': 'yourcontext'
+        }, headers=headers)
+    print(reponse.json())
+    >>> "[{'answer': 'Celebration', 'score': '0.9999'}]"
+
+    ```
+
+    
+# System Requirements
+| RAM | GPU|
+| :-: | :-: |
+| 8G| No GPU required|
+
+
