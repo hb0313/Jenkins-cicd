@@ -1,0 +1,26 @@
+Starting build...
+Sending build context to Docker daemon  315.9kB
+Step 1/7 : FROM python:3.9
+ ---> 850f8694d221
+Step 2/7 : WORKDIR /usr/src/image-classification
+ ---> Using cache
+ ---> 0bcdd002b284
+Step 3/7 : COPY poetry.lock pyproject.toml ./
+ ---> Using cache
+ ---> 5cd09cff014d
+Step 4/7 : RUN pip install --no-cache-dir poetry==1.1.11     && poetry config virtualenvs.create false     && poetry install --no-interaction --no-ansi --no-dev     && mkdir -p uploads
+ ---> Using cache
+ ---> 3b1971d75df4
+Step 5/7 : COPY ./ ./
+ ---> 1168f7bcfe1c
+Step 6/7 : EXPOSE 8000
+ ---> Running in 8dd88b42fad8
+Removing intermediate container 8dd88b42fad8
+ ---> c7814ba80d4f
+Step 7/7 : ENTRYPOINT ["/bin/sh", "-c", "uvicorn main:app --host 0.0.0.0"]
+ ---> Running in 0446fc3ce5e0
+Removing intermediate container 0446fc3ce5e0
+ ---> dfc8341ee240
+Successfully built dfc8341ee240
+Successfully tagged appbuild1:latest
+Adding logs
