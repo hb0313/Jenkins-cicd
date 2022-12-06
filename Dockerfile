@@ -1,7 +1,19 @@
-#MAINTAINER @harshad
-FROM node:18-alpine
-WORKDIR /app
-COPY . .
-RUN yarn install --production
-CMD ["node", "src/index.js"]
-EXPOSE 3000
+# Pull base image
+FROM python:3.9
+
+# Create work directory
+WORKDIR /usr/src/image-classification
+
+#Install poetry env, project dependecny and model files
+COPY poetry.lock pyproject.toml ./
+RUN pip install --no-cache-dir poetry==1.1.11 \
+    && poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-ansi --no-dev \
+    && mkdir -p uploads
+
+#Copy files
+COPY ./ ./
+
+#Expose port and run application
+EXPOSE 8000
+ENTRYPOINT ["/bin/sh", "-c", "uvicorn main:app --host 0.0.0.0"]
