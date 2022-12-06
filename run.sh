@@ -1,3 +1,3 @@
 #/bin/bash
 
-docker build -t app1 .
+docker build -t git/appbuild .
