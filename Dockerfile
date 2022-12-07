@@ -2,13 +2,14 @@
 FROM python:3.9
 
 # Create work directory
-WORKDIR /usr/src/summarization
+WORKDIR /usr/src/image-classification
 
 #Install poetry env, project dependecny and model files
 COPY poetry.lock pyproject.toml ./
 RUN pip install --no-cache-dir poetry==1.1.11 \
     && poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi --no-dev
+    && poetry install --no-interaction --no-ansi --no-dev \
+    && mkdir -p uploads
 
 #Copy files
 COPY ./ ./

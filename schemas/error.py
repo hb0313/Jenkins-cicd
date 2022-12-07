@@ -1,9 +1,9 @@
-from pydantic import BaseModel
+import pydantic
 
 
-class MLModelNotFoundError(BaseModel):
+class InvalidStringError(pydantic.BaseModel):
+    detail: str = "String too long"
+
+
+class MLModelNotFoundError(pydantic.BaseModel):
     detail: str = "ML model not found"
-
-
-class InvalidStringError(BaseModel):
-    detail: str = "String is too long"

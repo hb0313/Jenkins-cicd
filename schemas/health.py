@@ -1,15 +1,15 @@
-from enum import Enum
+import enum
 
-from pydantic import BaseModel
+import pydantic
 
 
-class Status(str, Enum):
+class Status(str, enum.Enum):
     PASS = "pass"
     FAIL = "fail"
     WARN = "warn"
 
 
-class Health(BaseModel):
+class Health(pydantic.BaseModel):
     status: Status
     version: str
     releaseId: str
