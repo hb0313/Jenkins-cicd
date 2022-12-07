@@ -2,5 +2,9 @@ import pydantic
 
 
 class AnswerOut(pydantic.BaseModel):
-    description: str
-    probability: float
+    label: str
+    score: float = pydantic.Field(..., example=0.9999)
+
+    @pydantic.validator("score")
+    def round_probability(cls, v: float) -> float:
+        return round(v, 4)

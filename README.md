@@ -1,46 +1,17 @@
-# Model Description
+## Model Description
 
+Yin et al. proposed a method for using pre-trained NLI models as a ready-made zero-shot sequence classifiers. The method works by posing the sequence to be classified as the NLI premise and to construct a hypothesis from each candidate label. For example, if we want to evaluate whether a sequence belongs to the class "politics", we could construct a hypothesis of This text is about politics.. The probabilities for entailment and contradiction are then converted to label probabilities.
 
-This model is the fine-tuned version of "RoBERTa Base" using [CUAD dataset](https://huggingface.co/datasets/cuad)
+This method is surprisingly effective in many cases, particularly when used with larger pre-trained models like BART and Roberta. See this blog post for a more expansive introduction to this and other zero shot methods, and see the code snippets below for examples of using this model for zero-shot classification both with Hugging Face's built-in pipeline and with native Transformers/PyTorch code.
 
-# Model Usage
+## Machine specification
 
-```python
-    from transformers import pipeline
+CPU 8GB, GPU optional
 
-    model_path = "akdeniz27/roberta-base-cuad"
+## How to use
 
-    model = pipeline(
-            task="question-answering",
-            model=self._model_path,
-            tokenizer=self._model_path,
-        )
-    qa = model({"question": question, "context": context})
-    print(qa["score"], qa["answer"])
-```
+Click try it out under 'POST' method. This will enable an option to upload image.
 
-# How API works
+Upload the image. Next, click execute to produce the output.
 
-The api takes two payloads namely:
-
-1. question
-2. context
-
-    ```python
-    
-        response = requests.post('localhost/api/v1/classify', data={
-        'question': 'yourquestion',
-        'context': 'yourcontext'
-        }, headers=headers)
-    print(reponse.json())
-    >>> "[{'answer': 'Celebration', 'score': '0.9999'}]"
-
-    ```
-
-    
-# System Requirements
-| RAM | GPU|
-| :-: | :-: |
-| 8G| No GPU required|
-
-
+The response will be a JSON with answer.
