@@ -3,7 +3,7 @@
 ## Features
 
 - Docker build pipeline
-- Build logging
+- Build logs
 - Clone repo and start auto build
 - Schedule building
 - Push to docker hub
