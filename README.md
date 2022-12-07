@@ -6,6 +6,7 @@
 - Build logging
 - Clone repo and start auto build
 - Schedule building
+- Push to docker hub
 
 ## Jenkinsfile
 
