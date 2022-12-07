@@ -9,7 +9,7 @@ WORKDIR /usr/src/roberta_qa
 #RUN pip install --no-cache-dir poetry==1.1.11 && poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
 
 #Copy files
-COPY ./ ./
+#COPY ./ ./
 
 #Expose port and run application
 #EXPOSE 8000
