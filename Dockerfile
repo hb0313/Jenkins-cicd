@@ -2,7 +2,7 @@
 FROM python:3.9
 
 # Create work directory
-WORKDIR /usr/src/text-classification
+WORKDIR /usr/src/summarization
 
 #Install poetry env, project dependecny and model files
 COPY poetry.lock pyproject.toml ./
