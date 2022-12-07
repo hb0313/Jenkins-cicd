@@ -1,34 +1,28 @@
 [tool.poetry]
-name = "Image Classification"
-version = "1.0.0"
+name = "text-generation"
+version = "0.1.0"
 description = ""
 authors = ["Harshad Bhandwaldar"]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.11"
-fastapi = "^0.79.0"
-uvicorn = "^0.18.2"
-python-multipart = "^0.0.5"
-starlette-prometheus = "^0.9.0"
-Pillow = "^9.0.1"
-pydantic = "^1.9.1"
-transformers = "^4.20.1"
-MyApplication = "^0.1.0"
-isort = "^5.10.1"
-black = "^22.6.0"
-flake8 = "^4.0.1"
+python = ">=3.9,<3.10"
+fastapi = "^0.85.0"
+uvicorn = "^0.18.3"
+transformers = "^4.22.2"
 torchvision = "^0.13.1"
-pyrovision = "^0.2.0"
+setuptools = "^65.6.3"
 
-[tool.poetry.dev-dependencies]
-black = "^22.1.0"
+
+[tool.poetry.group.dev.dependencies]
+black = {extras = ["d"], version = "^22.8.0"}
 isort = "^5.10.1"
-flake8 = "^4.0.1"
-pytest = "^7.0.1"
-mypy = "^0.931"
+flake8 = "^5.0.4"
+mypy = "^0.982"
 
-[tool.isort]
-profile = "black"
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 
 [tool.mypy]
 # unfortunately cannot inject dependencies into super-linter
@@ -50,9 +44,5 @@ warn_return_any = true
 no_implicit_reexport = true
 strict_equality = true
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
 [tool.black]
-experimental-string-processing = true
+preview= true

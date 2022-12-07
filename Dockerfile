@@ -2,14 +2,13 @@
 FROM python:3.9
 
 # Create work directory
-WORKDIR /usr/src/image-classification
+WORKDIR /usr/src/text-gen
 
 #Install poetry env, project dependecny and model files
 COPY poetry.lock pyproject.toml ./
-RUN pip install --no-cache-dir poetry==1.1.11 \
+RUN pip install --no-cache-dir poetry==1.2.0 \
     && poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi --no-dev \
-    && mkdir -p uploads
+    && poetry install --no-interaction --no-ansi --without dev
 
 #Copy files
 COPY ./ ./
