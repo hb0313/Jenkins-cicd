@@ -11,9 +11,9 @@ COPY poetry.lock pyproject.toml ./
 RUN apt-get update && apt-get install -y libsndfile1 ffmpeg \
     && apt install libsqlite3-dev \
     && apt-get install libbz2-dev;pip install --upgrade pip; pip install Cython; pip install nemo-toolkit["all"]
-RUN pip install --no-cache-dir poetry==1.3.0 \
-    && poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi
+RUN pip install --no-cache-dir poetry==1.3.0
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-interaction --no-ansi
 
 # Copy application files
 COPY ./ ./
