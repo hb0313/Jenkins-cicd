@@ -1,5 +1,5 @@
+from .answer import AnswerOut
 from .error import InvalidStringError, MLModelNotFoundError
-from .generate import GenerateOut
 from .health import Health, Status
 
 __all__ = [
@@ -7,5 +7,5 @@ __all__ = [
     "MLModelNotFoundError",
     "Health",
     "Status",
-    "GenerateOut",
+    "AnswerOut",
 ]

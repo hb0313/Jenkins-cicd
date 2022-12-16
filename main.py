@@ -2,16 +2,16 @@ import fastapi
 import uvicorn
 from fastapi import responses
 
-from api.v1.routers import generate, health
+from api.v1.routers import health, translation
 from core.config import settings
 
 app = fastapi.FastAPI(
-    title="Text Generation - Facebook Blenderbot",
+    title="NVIDIA Text Translation - Transformers26x6 (German to English)",
     version=settings.releaseId,
 )
 
 app.include_router(health.router, prefix=settings.API_V1_STR, tags=["health"])
-app.include_router(generate.router, prefix=settings.API_V1_STR, tags=["generation"])
+app.include_router(translation.router, prefix=settings.API_V1_STR, tags=["classify"])
 
 
 @app.get("/", include_in_schema=False)
@@ -20,4 +20,4 @@ async def index() -> responses.RedirectResponse:
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", debug=True, reload=True)
+    uvicorn.run(app)
