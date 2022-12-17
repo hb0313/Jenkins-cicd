@@ -1,5 +1,5 @@
 # Pull base image
-FROM nvcr.io/nvidia/nemo:v0.10
+FROM nvcr.io/nvidia/pytorch:latest
 
 # Create work directory
 WORKDIR /usr/src/text-translation
@@ -8,6 +8,7 @@ WORKDIR /usr/src/text-translation
 COPY poetry.lock pyproject.toml ./
 
 # hadolint ignore=DL3008,DL3007,DL3009
+RUN pip install nemo_toolkit[all]
 RUN pip install --no-cache-dir poetry==1.3.0 \
     && poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
