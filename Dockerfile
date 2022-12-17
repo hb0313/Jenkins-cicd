@@ -1,5 +1,5 @@
 # Pull base image
-FROM nvcr.io/nvidia/pytorch:latest
+FROM nvcr.io/nvidia/pytorch:22.01-py3
 
 # Create work directory
 WORKDIR /usr/src/text-translation
