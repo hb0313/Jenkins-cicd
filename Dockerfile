@@ -19,9 +19,9 @@ COPY poetry.lock pyproject.toml ./
 # Copy application files
 COPY --from=builder /usr/src/text-translation ./
 
-RUN pip install --no-cache-dir poetry==1.3.0 \
-    && poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi
+RUN pip install --no-cache-dir poetry==1.3.0
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-interaction --no-ansi
 
 COPY ./ ./
 
