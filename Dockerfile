@@ -4,15 +4,16 @@ FROM nvcr.io/nvidia/pytorch:22.01-py3 AS builder
 # Create work directory
 WORKDIR /usr/src/text-translation
 
-#Install poetry env, project dependency and model files
-#COPY ./ ./
-
 # hadolint ignore=DL3008,DL3007,DL3009
 RUN pip install nemo_toolkit[all]
 
 
 # Pull base image
 FROM python:3.9
+
+
+#Install poetry env, project dependency and model files
+#COPY ./ ./
 
 # Copy application files
 COPY --from=builder /usr/src/text-translation ./
