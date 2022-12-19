@@ -13,7 +13,8 @@ FROM python:3.9
 
 
 #Install poetry env, project dependency and model files
-#COPY ./ ./
+COPY poetry.lock pyproject.toml ./
+
 
 # Copy application files
 COPY --from=builder /usr/src/text-translation ./
@@ -21,6 +22,8 @@ COPY --from=builder /usr/src/text-translation ./
 RUN pip install --no-cache-dir poetry==1.3.0 \
     && poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
+
+COPY ./ ./
 
 # Expose port and run application
 EXPOSE 8000
