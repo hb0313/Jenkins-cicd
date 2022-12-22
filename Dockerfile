@@ -95,7 +95,7 @@ EXPOSE 8000
 ENTRYPOINT ["/bin/sh", "-c", "uvicorn main:app --host 0.0.0.0"]
 
 #RUN printf "#!/bin/bash\njupyter lab --no-browser --allow-root --ip=0.0.0.0" >> start-jupyter.sh && \
-    chmod +x start-jupyter.sh
+#chmod +x start-jupyter.sh
 
 # Prepare AIS CLI
 #ARG AIS_VERSION=v1.3.15
