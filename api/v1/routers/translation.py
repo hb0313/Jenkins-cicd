@@ -6,7 +6,7 @@ import nemo.collections.nlp as nemo_nlp
 import schemas
 
 model = nemo_nlp.models.machine_translation.MTEncDecModel.from_pretrained(
-    model_name="nmt_de_en_transformer24x6"
+    model_name="nmt_ru_en_transformer24x6"
 )
 
 router = fastapi.APIRouter()

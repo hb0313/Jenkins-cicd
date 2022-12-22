@@ -6,7 +6,7 @@ from api.v1.routers import health, translation
 from core.config import settings
 
 app = fastapi.FastAPI(
-    title="NVIDIA Text Translation - Transformers26x6 (German to English)",
+    title="NVIDIA Text Translation - Transformers26x6 (Russian to English)",
     version=settings.releaseId,
 )
 
