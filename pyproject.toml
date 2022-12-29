@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "text-translation-de2en-transformer24x6"
+name = "speech-to-text"
 version = "0.1.0"
 description = ""
 authors = ["Harshad Bhandwaldar <hbhandwaldar@gmail.com>"]
@@ -11,10 +11,7 @@ python = ">=3.9,<3.11"
 fastapi = "^0.88.0"
 uvicorn = "^0.20.0"
 pydantic = "^1.10.2"
-nemo = "^4.3.1"
-cython = "^0.29.32"
-torchvision = "^0.13.1"
-nemo-toolkit = {git = "https://github.com/NVIDIA/NeMo.git"}
+python-multipart = "^0.0.5"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"

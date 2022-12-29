@@ -1,10 +1,9 @@
 from typing import Union
 
 import fastapi
-from fastapi import responses
-
 import schemas
 from core.config import settings
+from fastapi import responses
 
 router = fastapi.APIRouter()
 

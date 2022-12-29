@@ -1,12 +1,11 @@
 import fastapi
 import uvicorn
-from fastapi import responses
-
 from api.v1.routers import health, translation
 from core.config import settings
+from fastapi import responses
 
 app = fastapi.FastAPI(
-    title="NVIDIA Text Translation - Transformers26x6 (Russian to English)",
+    title="NVIDIA Speech to Text - Quartznet 15x5 (French)",
     version=settings.releaseId,
 )
 
