@@ -2,4 +2,7 @@ import pydantic
 
 
 class AnswerOut(pydantic.BaseModel):
-    answer: str
+    content: str
+    sampleRate: str
+    encoding: str
+    languageCode: str

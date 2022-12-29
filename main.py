@@ -5,12 +5,12 @@ from core.config import settings
 from fastapi import responses
 
 app = fastapi.FastAPI(
-    title="NVIDIA Speech to Text - Quartznet 15x5 (French)",
+    title="NVIDIA Text to Speech - Tacotron2 (English)",
     version=settings.releaseId,
 )
 
 app.include_router(health.router, prefix=settings.API_V1_STR, tags=["health"])
-app.include_router(translation.router, prefix=settings.API_V1_STR, tags=["classify"])
+app.include_router(translation.router, prefix=settings.API_V1_STR, tags=["transalte"])
 
 
 @app.get("/", include_in_schema=False)

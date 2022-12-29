@@ -36,4 +36,25 @@ Click try it out under 'POST' method. This will enable an option to upload image
 
 Upload the image. Next, click execute to produce the output.
 
-The response will be a JSON with answer.
+The response will be a JSON.
+
+
+   JSON Formate:
+
+    {
+        "content": base64 audio encoded string,
+        "sampleRate": 22050 ,
+        "encoding": "WAV",
+        "languageCode": "English",
+    }
+
+
+Decoder for audio file genrator:
+
+```
+import base64
+
+wav_file = open("temp.wav", "wb")
+decode_string = base64.b64decode(audio_encoded_json_content)
+wav_file.write(decode_string)
+```
