@@ -16,5 +16,5 @@ COPY ./ ./
 # Expose port and run application
 EXPOSE 8000
 
-# Define Entrypoint
+# Define Entrypoint for uvicorn
 ENTRYPOINT ["/bin/sh", "-c", "uvicorn main:app --host 0.0.0.0"]
