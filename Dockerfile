@@ -1,5 +1,5 @@
 #Pull base image
-FROM ubuntu:latest
+FROM ubuntu:18.04
 
 #Update gnu and install python3-pip
 RUN apt update; apt install -y gnupg2
