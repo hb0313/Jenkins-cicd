@@ -1,20 +1,24 @@
-# Pull base image
-FROM python:3.9
+#Pull base image
+FROM ubuntu:18.04
 
-# Create work directory
-WORKDIR /usr/src/to-text-en-conformer-ctc-large-ls
+#Update gnu and install python3-pip
+RUN apt update; apt install -y gnupg2
+RUN apt install -y python3-pip
 
-#Install poetry env, project dependency and model files
-COPY poetry.lock pyproject.toml ./
+#Move requiremnets to docker app path
+COPY ./requirements.txt /app/requirements.txt
 
-# hadolint ignore=DL3008,DL3007,DL3009,DL3006,DL3013,DL3042,DL3014,DL3015,DL3027
-RUN  apt-get update &&  apt-get install --no-install-recommends -y libsndfile1 ffmpeg libsqlite3-dev libbz2-dev lzma liblzma-dev cmake; rm -rf /var/lib/apt/list/**;pip install Cython;pip install nemo_toolkit['all'];pip install --no-cache-dir poetry==1.2.0 && poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
+#Change working directory
+WORKDIR /app
 
-# Copy application files
-COPY ./ ./
+#Install flask apps
+RUN pip3 install -r requirements.txt
 
-# Expose port and run application
-EXPOSE 8000
+#Copy content to app
+COPY . /app
 
-# Define Entrypoint for uvicorn
-ENTRYPOINT ["/bin/sh", "-c", "uvicorn main:app --host 0.0.0.0"]
+#Set ENTRYPOINT as python3
+ENTRYPOINT ["python3"]
+
+#Run application
+CMD ["run.py"]
