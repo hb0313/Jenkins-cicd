@@ -6,8 +6,7 @@ WORKDIR /usr/src/text-to-speech-silero
 
 #Install poetry env, project dependency and model files
 COPY poetry.lock pyproject.toml ./
-RUN pip install --no-cache-dir poetry==1.3.0
-RUN poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
+RUN pip install --no-cache-dir poetry==1.2.0 && poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
 
 # Copy application files
 COPY ./ ./
