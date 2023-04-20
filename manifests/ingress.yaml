@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: audio-speech-to-text-silero
+spec:
+  tls:
+  - hosts:
+    - audio-speech-to-text-silero.ai-sandbox.4th-ir.io
+    secretName: audio-speech-to-text-silero-production-certificate
+  rules:
+  - host: audio-speech-to-text-silero.ai-sandbox.4th-ir.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: audio-speech-to-text-silero-svc
+            port: 
+              number: 8000
+

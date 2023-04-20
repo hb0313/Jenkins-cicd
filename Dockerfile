@@ -1,24 +1,17 @@
-#Pull base image
-FROM ubuntu:18.04
+# Pull base image
+FROM python:3.9
 
-#Update gnu and install python3-pip
-RUN apt update; apt install -y gnupg2
-RUN apt install -y python3-pip
+# Create work directory
+WORKDIR /usr/src/to-speech-silero
 
-#Move requiremnets to docker app path
-COPY ./requirements.txt /app/requirements.txt
+#Install poetry env, project dependency and model files
+COPY poetry.lock pyproject.toml ./
+RUN pip install --no-cache-dir poetry==1.3.0 && poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
 
-#Change working directory
-WORKDIR /app
+# Copy application files
+COPY ./ ./
 
-#Install flask apps
-RUN pip3 install -r requirements.txt
+# Expose port and run application
+EXPOSE 8000
 
-#Copy content to app
-COPY . /app
-
-#Set ENTRYPOINT as python3
-ENTRYPOINT ["python3"]
-
-#Run application
-CMD ["run.py"]
+ENTRYPOINT ["/bin/sh", "-c", "uvicorn main:app --host 0.0.0.0"]
