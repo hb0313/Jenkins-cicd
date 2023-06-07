@@ -11,7 +11,7 @@ WORKDIR /usr/src/vissl-regnet
 
 #Install poetry env, project dependecny and model files
 COPY poetry.lock pyproject.toml ./
-RUN pip install --no-cache-dir poetry==1.1.11 && poetry config virtualenvs.create false
+RUN pip install --no-cache-dir poetry<=1.1.11 && poetry config virtualenvs.create false
 RUN poetry install --no-interaction --no-ansi
 RUN git clone https://huggingface.co/facebook/regnet-y-040
 
