@@ -1,8 +1,8 @@
 import pydantic
 
 
-class InvalidMediaError(pydantic.BaseModel):
-    detail: str = "Media not supported"
+class InvalidStringError(pydantic.BaseModel):
+    detail: str = "String too long"
 
 
 class MLModelNotFoundError(pydantic.BaseModel):

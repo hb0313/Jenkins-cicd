@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: image-classification-vissl
+spec:
+  tls:
+  - hosts:
+    - image-classification-vissl.ai-sandbox.4th-ir.io
+    secretName: image-classification-vissl-production-certificate
+  rules:
+  - host: image-classification-vissl.ai-sandbox.4th-ir.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: image-classification-vissl-svc
+            port: 
+              number: 8000

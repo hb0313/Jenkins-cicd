@@ -1,25 +1,22 @@
 # Pull base image
 FROM python:3.9
 
+# Install Git LFS
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
+    && apt-get --no-install-recommends -y install git-lfs=3.2.0
+
 # Create work directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/vissl-regnet
 
-# Install poetry env, project dependency and model files
+#Install poetry env, project dependecny and model files
 COPY poetry.lock pyproject.toml ./
+RUN pip install --no-cache-dir poetry==1.1.11 && poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
+RUN git clone https://huggingface.co/facebook/regnet-y-040
 
-# hadolint ignore=DL3013
-RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir poetry==1.2.0 \
-    && pip install --no-cache-dir --upgrade mxnet==1.9.1 \
-    && pip install --no-cache-dir "torch==1.7.1+cpu" "torchvision==0.8.2+cpu" -f https://download.pytorch.org/whl/torch_stable.html \
-    && pip install --no-cache-dir --upgrade gluoncv==0.10.5.post0 \
-    && pip install --no-cache-dir decord==0.6.0 \
-    && poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi --without dev
-
-# Copy application files
+#Copy files
 COPY ./ ./
 
-# Expose port and run application
+#Expose port and run application
 EXPOSE 8000
-
 ENTRYPOINT ["/bin/sh", "-c", "uvicorn main:app --host 0.0.0.0"]

@@ -2,17 +2,20 @@ import fastapi
 import uvicorn
 from fastapi import responses
 
-from api.v1.routers import health, segment
+from api.v1.routers import classification, documentation, health
 from core.config import settings
 
 app = fastapi.FastAPI(
-    title="Pre-trained TSN Models on UCF101",
+    title="Image Classification - Vissl (RegnetY-60)",
     version=settings.releaseId,
 )
 
 app.include_router(health.router, prefix=settings.API_V1_STR, tags=["health"])
 app.include_router(
-    segment.router, prefix=settings.API_V1_STR, tags=["image_segmentation"]
+    classification.router, prefix=settings.API_V1_STR, tags=["classification"]
+)
+app.include_router(
+    documentation.router, prefix=settings.API_V1_STR, tags=["documentation"]
 )
 
 
@@ -22,4 +25,4 @@ async def index() -> responses.RedirectResponse:
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", reload=True, port=8083, host="0.0.0.0")
+    uvicorn.run(app, debug=True)

@@ -19,7 +19,7 @@ class HealthResponse(responses.JSONResponse):
     response_class=HealthResponse,
     responses={500: {"model": schemas.Health}},
 )
-def get_health(response: HealthResponse) -> Union[dict[str, str], HealthResponse]:
+async def get_health(response: HealthResponse) -> Union[dict[str, str], HealthResponse]:
     response.headers["Cache-Control"] = "max-age=3600"
 
     content = {

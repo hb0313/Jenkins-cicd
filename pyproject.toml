@@ -1,30 +1,27 @@
 [tool.poetry]
-name = "image-semantic-segmentation-pretrained-fcn"
+name = "image classification"
 version = "0.1.0"
 description = ""
-authors = ["Kobby Folson <kobbyfolson@gmail.com>"]
+authors = ["Harshad Bhandwaldar"]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.10"
-fastapi = "^0.89.1"
-uvicorn = "^0.20.0"
-
-[tool.poetry.group.dev.dependencies]
-mypy = "^0.971"
-black = "^22.8.0"
+python = ">=3.9,<3.11"
+transformers = "^4.20.1"
+pydantic = "^1.9.1"
+fastapi = "^0.79.0"
+uvicorn = "^0.18.2"
+torch = "^1.12.0"
+MyApplication = "^0.1.0"
 isort = "^5.10.1"
-flake8 = "^5.0.4"
+mypy = "^0.971"
+black = "^22.6.0"
+flake8 = "^4.0.1"
+Pillow = "^9.2.0"
+datasets = "^2.4.0"
+python-multipart = "^0.0.5"
 
-
-[[tool.poetry.source]]
-name = "pytorch"
-url = "https://download.pytorch.org/whl/torch_stable.html"
-default = false
-secondary = true
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
 
 [tool.mypy]
 # unfortunately cannot inject dependencies into super-linter
@@ -45,7 +42,10 @@ warn_unused_ignores = true
 warn_return_any = true
 no_implicit_reexport = true
 strict_equality = true
-ignore_errors = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 experimental-string-processing = true

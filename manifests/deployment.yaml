@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-classification-vissl
+spec:
+  selector:
+    matchLabels:
+      app: image-classification-vissl
+  template:
+    metadata:
+      labels:
+        app: image-classification-vissl
+    spec:
+      containers:
+      - name: image-classification-vissl
+        image: airestservices.azurecr.io/image_classification_vissl
+        ports:
+        - containerPort: 8000

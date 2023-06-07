@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: image-classification-vissl
+  namespace: apps
+spec:
+  secretName: image-classification-vissl-production-certificate
+  issuerRef:
+    name: letsencrypt-prod
+  dnsNames:
+  - image-classification-vissl.ai-sandbox.4th-ir.io
+
