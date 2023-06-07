@@ -3,9 +3,9 @@ import tempfile
 import fastapi
 import gluoncv
 import mxnet as mx
-from mxnet import image
 from gluoncv.data.transforms.presets.segmentation import test_transform
 from gluoncv.utils.viz import get_color_pallete
+from mxnet import image
 
 import schemas
 
