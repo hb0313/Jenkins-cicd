@@ -13,7 +13,7 @@ TResult = Mapping[str, TValue]
 
 router = fastapi.APIRouter()
 
-model_path = "regnet-y-040/"
+model_path = "facebook/regnet-y-040"
 feature_extractor = AutoFeatureExtractor.from_pretrained(model_path)
 model = RegNetForImageClassification.from_pretrained(model_path)
 
