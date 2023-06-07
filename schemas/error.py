@@ -1,9 +1,9 @@
-from pydantic import BaseModel
+import pydantic
 
 
-class MLModelNotFoundError(BaseModel):
+class InvalidMediaError(pydantic.BaseModel):
+    detail: str = "Media not supported"
+
+
+class MLModelNotFoundError(pydantic.BaseModel):
     detail: str = "ML model not found"
-
-
-class InvalidAudioError(BaseModel):
-    detail: str = "Audio is too long"

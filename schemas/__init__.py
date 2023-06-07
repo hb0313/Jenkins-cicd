@@ -1,12 +1,9 @@
-from .error import InvalidAudioError, MLModelNotFoundError
+from .error import InvalidMediaError, MLModelNotFoundError
 from .health import Health, Status
-from .tagging import TaggingOut, TextIn
 
 __all__ = [
-    "InvalidAudioError",
+    "InvalidMediaError",
     "MLModelNotFoundError",
     "Health",
     "Status",
-    "TaggingOut",
-    "TextIn",
 ]

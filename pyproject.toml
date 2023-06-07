@@ -1,34 +1,30 @@
 [tool.poetry]
-name = "speech-to-text-silero"
+name = "image-semantic-segmentation-pretrained-fcn"
 version = "0.1.0"
 description = ""
-authors = ["Cyril Pierro <fiopapa32@gmail.com>"]
+authors = ["Kobby Folson <kobbyfolson@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.10"
 fastapi = "^0.89.1"
 uvicorn = "^0.20.0"
-python-multipart = "^0.0.5"
-torch = "^2.0.0"
-torchaudio = "^2.0.1"
-omegaconf = "^2.3.0"
-numpy = "^1.24.1"
-soundfile = "^0.11.0"
-
 
 [tool.poetry.group.dev.dependencies]
-flake8 = "5.0.4"
-black = "22.10.0"
-isort = "5.10.1"
-mypy = "0.971"
+mypy = "^0.971"
+black = "^22.8.0"
+isort = "^5.10.1"
+flake8 = "^5.0.4"
+
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/torch_stable.html"
+default = false
+secondary = true
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-
-[tool.isort]
-profile = "black"
 
 [tool.mypy]
 # unfortunately cannot inject dependencies into super-linter
@@ -49,6 +45,7 @@ warn_unused_ignores = true
 warn_return_any = true
 no_implicit_reexport = true
 strict_equality = true
+ignore_errors = true
 
 [tool.black]
 experimental-string-processing = true

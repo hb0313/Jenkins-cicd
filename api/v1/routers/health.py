@@ -1,11 +1,12 @@
 from typing import Union
 
-from fastapi import APIRouter, responses
+import fastapi
+from fastapi import responses
 
+import schemas
 from core.config import settings
-from schemas import health
 
-router = APIRouter()
+router = fastapi.APIRouter()
 
 
 class HealthResponse(responses.JSONResponse):
@@ -14,15 +15,15 @@ class HealthResponse(responses.JSONResponse):
 
 @router.get(
     "/health",
-    response_model=health.Health,
+    response_model=schemas.Health,
     response_class=HealthResponse,
-    responses={500: {"model": health.Health}},
+    responses={500: {"model": schemas.Health}},
 )
-async def get_health(response: HealthResponse) -> Union[dict[str, str], HealthResponse]:
+def get_health(response: HealthResponse) -> Union[dict[str, str], HealthResponse]:
     response.headers["Cache-Control"] = "max-age=3600"
 
     content = {
-        "status": health.Status.PASS,
+        "status": schemas.Status.PASS,
         "version": settings.version,
         "releaseId": settings.releaseId,
     }
